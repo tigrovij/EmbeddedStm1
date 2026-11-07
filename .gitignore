@@ -1,0 +1,20 @@
+# Local builds and CMake configuration
+/build/
+/cmake-build-*/
+CMakeUserPresets.json
+CMakeCache.txt
+CMakeFiles/
+/compile_commands.json
+
+# Firmware build output
+*.elf
+*.hex
+*.bin
+*.map
+*.obj
+*.o
+*.su
+
+# Local IDE and CubeMX state
+/.idea/
+/.mxproject
