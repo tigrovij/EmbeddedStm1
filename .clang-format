@@ -1,0 +1,9 @@
+BasedOnStyle: LLVM
+IndentWidth: 4
+ContinuationIndentWidth: 4
+UseTab: Never
+BreakBeforeBraces: Allman
+BreakBeforeBinaryOperators: NonAssignment
+AlignAfterOpenBracket: AlwaysBreak
+BinPackArguments: false
+AllowAllArgumentsOnNextLine: false
