@@ -57,6 +57,11 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define RELAY_CTRL_Pin GPIO_PIN_1
+#define RELAY_CTRL_GPIO_Port GPIOA
+#define RELAY_SENSE_Pin GPIO_PIN_0
+#define RELAY_SENSE_GPIO_Port GPIOB
+#define RELAY_SENSE_EXTI_IRQn EXTI0_IRQn
 
 /* USER CODE BEGIN Private defines */
 
