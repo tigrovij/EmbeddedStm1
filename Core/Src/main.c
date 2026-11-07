@@ -21,6 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "relay_timing.h"
 
 /* USER CODE END Includes */
 
@@ -59,6 +60,12 @@ static void MX_USART2_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void HAL_GPIO_EXTI_Callback(uint16_t pin)
+{
+  if (pin == RELAY_SENSE_Pin) {
+    RelayTiming_OnContactEdge();
+  }
+}
 
 /* USER CODE END 0 */
 
@@ -94,6 +101,7 @@ int main(void)
   MX_TIM2_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
+  RelayTiming_Run();
 
   /* USER CODE END 2 */
 
