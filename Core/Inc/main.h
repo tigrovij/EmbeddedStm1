@@ -57,8 +57,13 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define RELAY_CTRL_Pin GPIO_PIN_1
+#define RELAY_CTRL_GPIO_Port GPIOA
 #define LED_PWM_Pin GPIO_PIN_5
 #define LED_PWM_GPIO_Port GPIOA
+#define RELAY_SENSE_Pin GPIO_PIN_0
+#define RELAY_SENSE_GPIO_Port GPIOB
+#define RELAY_SENSE_EXTI_IRQn EXTI0_IRQn
 #define PWM_UP_Pin GPIO_PIN_6
 #define PWM_UP_GPIO_Port GPIOB
 #define PWM_DOWN_Pin GPIO_PIN_7
