@@ -22,6 +22,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "relay_timing.h"
+#include "software_pwm.h"
 
 /* USER CODE END Includes */
 
@@ -102,6 +103,7 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   RelayTiming_Run();
+  SoftwarePwm_Init();
 
   /* USER CODE END 2 */
 
@@ -112,6 +114,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    SoftwarePwm_Update();
   }
   /* USER CODE END 3 */
 }
@@ -257,20 +260,26 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(RELAY_CTRL_GPIO_Port, RELAY_CTRL_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, RELAY_CTRL_Pin|LED_PWM_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : RELAY_CTRL_Pin */
-  GPIO_InitStruct.Pin = RELAY_CTRL_Pin;
+  /*Configure GPIO pins : RELAY_CTRL_Pin LED_PWM_Pin */
+  GPIO_InitStruct.Pin = RELAY_CTRL_Pin|LED_PWM_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(RELAY_CTRL_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pin : RELAY_SENSE_Pin */
   GPIO_InitStruct.Pin = RELAY_SENSE_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(RELAY_SENSE_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : PWM_UP_Pin PWM_DOWN_Pin */
+  GPIO_InitStruct.Pin = PWM_UP_Pin|PWM_DOWN_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI0_IRQn, 1, 0);
